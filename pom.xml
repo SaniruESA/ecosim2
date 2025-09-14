@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="
+            http://maven.apache.org/POM/4.0.0 
+            http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.example</groupId>
+    <artifactId>ecosim2</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <name>EcoSim2</name>
+    <description>A JavaFX project configured for macOS ARM (Apple Silicon)</description>
+
+    <properties>
+        <!-- Use an LTS version of Java for stability -->
+        <java.version>17</java.version>
+        <!-- JavaFX version (LTS) -->
+        <javafx.version>21.0.8</javafx.version>
+        <!-- Platform (used for resolving native libs) -->
+        <javafx.platform>mac</javafx.platform>
+        <!-- Path to JavaFX SDK installed locally with correct architecture (ARM) -->
+        <javafx.sdk.path>${project.basedir}/lib/javafx‑sdk‑${javafx.version}</javafx.sdk.path>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+    </properties>
+
+    <dependencies>
+        <!-- JavaFX modules you commonly need -->
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>${javafx.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-fxml</artifactId>
+            <version>${javafx.version}</version>
+        </dependency>
+        <!-- If you use other modules, add them (e.g. javafx-graphics, javafx-media, javafx-web) -->
+    </dependencies>
+
+    <build>
+        <plugins>
+
+            <!-- Compiler plugin to set Java version -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version> <!-- adjust to a recent stable version -->
+                <configuration>
+                    <release>${java.version}</release>
+                </configuration>
+            </plugin>
+
+            <!-- Plugin to run JavaFX applications -->
+            <plugin>
+                <groupId>org.openjfx</groupId>
+                <artifactId>javafx-maven-plugin</artifactId>
+                <version>0.0.8</version>
+                <configuration>
+                    <mainClass>com.example.Main</mainClass> <!-- put your actual main class here -->
+                    <options>
+                        <!-- Module-path pointing to the JavaFX SDK libs -->
+                        <option>--module-path</option>
+                        <option>${javafx.sdk.path}/lib</option>
+                        <option>--add-modules</option>
+                        <option>javafx.controls,javafx.fxml</option>
+                        <!-- If you want to force software rendering or disable certain pipelines you could add other options -->
+                    </options>
+                    <systemProperties>
+                        <!-- Make sure the platform property is passed if needed -->
+                        <javafx.platform>${javafx.platform}</javafx.platform>
+                    </systemProperties>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
+
+</project>
