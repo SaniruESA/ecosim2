@@ -9,7 +9,8 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class MyApp extends Application {
-    public Map map = new Map(0, 0);
+    public Map map = new Map(50, 10);
+    public Cell myCell = new Cell(new Coordinate(0, 0, map), "CR");
     @Override
     public void start(Stage stage) {
 
@@ -29,6 +30,7 @@ public class MyApp extends Application {
         stage.setScene(scene);
         stage.show();
 
+
         AnimationTimer timer = new AnimationTimer() {
             long lastUpdate = 0;
             int frameCount = 0;
@@ -37,11 +39,13 @@ public class MyApp extends Application {
             public void handle(long now) {
                 if (now - lastUpdate >= 64_000_000) { 
                     simAscii.setText(map.toString());
+                    map.Update();
                     frameCount++;
                     lastUpdate = now;
                 }
             }
         };
         timer.start();
+        map.AddCell(myCell);
     }
 }
