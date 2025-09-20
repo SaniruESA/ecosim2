@@ -10,7 +10,6 @@ import javafx.stage.Stage;
 
 public class MyApp extends Application {
     public Map map = new Map(50, 10);
-    public Cell myCell = new Cell(new Coordinate(0, 0, map), "G");
     @Override
     public void start(Stage stage) {
 
@@ -46,6 +45,7 @@ public class MyApp extends Application {
             }
         };
         timer.start();
-        map.AddCell(myCell);
+        // map.AddCell(new Cell(new Coordinate(0, 0, map), "A1"));
+        // map.AddCell(new Cell(new Coordinate(0, 1, map), "A2"));
     }
 }

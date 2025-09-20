@@ -13,13 +13,15 @@ public class Map {
     public void AddCell(Cell c){
         cellHash.add(c);
     }
-    public Cell getCellInList(Cell c){
+    public String getCellInList(int i, int j){
+        String result = "  ";
         for(Cell target : cellHash){
-            if(target.position.equals(c.position)){
-                return target;
+            if(target.position.equals(new Coordinate(i, j, this))){
+                result = target.toString();
+                break;
             } 
         }
-        return null;
+        return result;
     }
     @Override
     public String toString(){
@@ -28,12 +30,7 @@ public class Map {
         for(int i = 0; i < rows; i++){
             result += "|";
             for(int j = 0; j < cols; j++){
-                var cellThere = getCellInList(new Cell(new Coordinate(j, i, this), result));
-                if(cellThere != null){
-                    result += cellThere;
-                } else {
-                    result += "  ";
-                }
+                result += getCellInList(j, i);
             }
             result += "|\n";
         }
