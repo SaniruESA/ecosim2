@@ -43,11 +43,16 @@ public class MyApp extends Application {
             }
         };
         timer.start();
-        map.AddCell(new GrassCell(new Coordinate(1, 0, map)));
-        map.AddCell(new GrassCell(new Coordinate(2, 1, map)));
-        map.AddCell(new GrassCell(new Coordinate(3, 2, map)));
-        map.AddCell(new GrassCell(new Coordinate(4, 3, map)));
-        map.AddCell(new GrassCell(new Coordinate(5, 4, map)));
-        map.AddCell(new WaterSourceCell(new Coordinate(13, 13, map), 6));
+        map.AddCell(new GrassCell(new Coordinate(5, 5, map)));
+        map.AddCell(new GrassCell(new Coordinate(6, 5, map)));
+        map.AddCell(new GrassCell(new Coordinate(7, 5, map)));
+        map.AddCell(new GrassCell(new Coordinate(8, 5, map)));
+        map.AddCell(new GrassCell(new Coordinate(9, 5, map)));
+        map.AddCell(new GrassCell(new Coordinate(5, 13, map)));
+        map.AddCell(new GrassCell(new Coordinate(6, 13, map)));
+        map.AddCell(new GrassCell(new Coordinate(7, 13, map)));
+        map.AddCell(new GrassCell(new Coordinate(8, 13, map)));
+        map.AddCell(new GrassCell(new Coordinate(9, 13, map)));
+        map.AddCell(new WaterSourceCell(new Coordinate(27, 10, map), 20));
     }
 }
