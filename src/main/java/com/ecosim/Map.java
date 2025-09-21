@@ -25,6 +25,11 @@ public class Map {
     }
     @Override
     public String toString(){
+        // Update using a snapshot so cells added during this tick don't also update immediately
+        java.util.List<Cell> snapshot = new java.util.ArrayList<>(cellHash);
+        for (Cell c : snapshot) {
+            c.Update();
+        }
         String result = "";
         result += "+" + "--".repeat(cols) + "+\n";
         for(int i = 0; i < rows; i++){
@@ -36,10 +41,5 @@ public class Map {
         }
         result += "+" + "--".repeat(cols) + "+";
         return result;
-    }
-    public void Update() {
-        for(Cell c : cellHash){
-            c.Update();
-        }
     }
 }

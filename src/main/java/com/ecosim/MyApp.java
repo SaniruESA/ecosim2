@@ -9,7 +9,7 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class MyApp extends Application {
-    public Map map = new Map(50, 10);
+    public Map map = new Map(50, 25);
     @Override
     public void start(Stage stage) {
 
@@ -36,16 +36,19 @@ public class MyApp extends Application {
             boolean flip = true;
             @Override
             public void handle(long now) {
-                if (now - lastUpdate >= 64_000_000) { 
+                if (now - lastUpdate >= 83_333_333) { 
                     simAscii.setText(map.toString());
-                    map.Update();
                     frameCount++;
                     lastUpdate = now;
                 }
             }
         };
         timer.start();
-        // map.AddCell(new Cell(new Coordinate(0, 0, map), "A1"));
-        // map.AddCell(new Cell(new Coordinate(0, 1, map), "A2"));
+        map.AddCell(new GrassCell(new Coordinate(1, 0, map)));
+        map.AddCell(new GrassCell(new Coordinate(2, 1, map)));
+        map.AddCell(new GrassCell(new Coordinate(3, 2, map)));
+        map.AddCell(new GrassCell(new Coordinate(4, 3, map)));
+        map.AddCell(new GrassCell(new Coordinate(5, 4, map)));
+        map.AddCell(new WaterSourceCell(new Coordinate(14, 5, map), 7));
     }
 }

@@ -1,9 +1,17 @@
 package com.ecosim;
 
-public class Cell {
+public abstract class Cell {
     public Coordinate position;
     protected NDigitString symbol;
     protected long hashCode;
+    protected enum CellState {
+        DEAD,
+        IDLE,
+        BREEDING,
+        HUNTING,
+        FLEEING
+    }
+    protected CellState state = CellState.IDLE;
     public Cell(Coordinate position, String symbol){
         hashCode = symbol.charAt(0) * 31 + symbol.charAt(1) + (long)(Math.random() * 10);
         this.position = position;
@@ -13,10 +21,42 @@ public class Cell {
     public String toString(){
         return symbol.toString();
     }
-    public void Update(){
-        position.translate(1, 0);
+    protected void Update(){
+        switch (state) {
+            case IDLE -> {
+                idleBehavior();
+            }
+            case BREEDING -> {
+                breedingBehavior();
+            }
+            case HUNTING -> {
+                huntingBehavior();
+            }
+            case FLEEING -> {
+                fleeingBehavior();
+            }
+            case DEAD -> {
+                deadBehavior();
+            }
+            default -> throw new AssertionError();
+        }
     }
     public long getHashCode() {
         return hashCode;
+    }
+    protected void idleBehavior(){
+
+    }
+    protected void breedingBehavior(){
+        
+    }
+    protected void huntingBehavior(){
+        
+    }
+    protected void fleeingBehavior(){
+        
+    }
+    protected void deadBehavior(){
+        
     }
 }
