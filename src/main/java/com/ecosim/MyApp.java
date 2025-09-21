@@ -33,7 +33,6 @@ public class MyApp extends Application {
         AnimationTimer timer = new AnimationTimer() {
             long lastUpdate = 0;
             int frameCount = 0;
-            boolean flip = true;
             @Override
             public void handle(long now) {
                 if (now - lastUpdate >= 83_333_333) { 
@@ -49,6 +48,6 @@ public class MyApp extends Application {
         map.AddCell(new GrassCell(new Coordinate(3, 2, map)));
         map.AddCell(new GrassCell(new Coordinate(4, 3, map)));
         map.AddCell(new GrassCell(new Coordinate(5, 4, map)));
-        map.AddCell(new WaterSourceCell(new Coordinate(14, 5, map), 7));
+        map.AddCell(new WaterSourceCell(new Coordinate(13, 13, map), 6));
     }
 }

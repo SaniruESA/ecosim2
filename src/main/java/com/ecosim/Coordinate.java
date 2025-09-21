@@ -1,5 +1,5 @@
 package com.ecosim;
-
+import java.util.ArrayList;
 public class Coordinate {
     private Map container;
     private int x; // X-coordinate of the object
@@ -18,41 +18,29 @@ public class Coordinate {
         if(this.y > container.rows - 1){ this.y = container.rows - 1; }
         return new Coordinate(this.x, this.y, this.container);
     }
-    /**
-     * Return the 8 adjacent coordinates (N, S, E, W and diagonals) around this coordinate.
-     */
-    public java.util.List<Coordinate> getAdjacentCoordinates(){
-        java.util.List<Coordinate> out = new java.util.ArrayList<>();
-        for(int dy = -1; dy <= 1; dy++){
-            for(int dx = -1; dx <= 1; dx++){
-                if(dx == 0 && dy == 0) continue;
-                out.add(new Coordinate(this.x + dx, this.y + dy, this.container));
-            }
-        }
-        return out;
-    }
 
-    /** Return true if this coordinate falls within its map bounds. */
-    public boolean isInBounds(){
-        return this.x >= 0 && this.y >= 0 && this.x < container.cols && this.y < container.rows;
-    }
-
-    /**
-     * Convenience getter for the map this coordinate belongs to.
-     */
     public Map getMap(){
         return container;
     }
-
-    /**
-     * Return the cell at this coordinate in the map, or null if none exists.
-     */
-    public Cell getCell(){
-        if(!isInBounds()) return null;
-        for(Cell c : container.cellHash){
-            if(c.position.equals(this)) return c;
-        }
-        return null;
+    public ArrayList<Coordinate> getAdjacentCoords(){
+        ArrayList<Coordinate> adjacentCoords = new ArrayList<>();
+        if(container.isValidCoordinate(new Coordinate(x - 1, y - 1, container))) // Bottom-left
+            adjacentCoords.add(new Coordinate(x - 1, y - 1, container));
+        if(container.isValidCoordinate(new Coordinate(x - 1, y + 1, container))) //  Top-left
+            adjacentCoords.add(new Coordinate(x - 1, y + 1, container));
+        if(container.isValidCoordinate(new Coordinate(x - 1, y, container))) //  Middle-left
+            adjacentCoords.add(new Coordinate(x - 1, y, container));
+        if(container.isValidCoordinate(new Coordinate(x + 1, y - 1, container))) // Bottom-right
+            adjacentCoords.add(new Coordinate(x + 1, y - 1, container));
+        if(container.isValidCoordinate(new Coordinate(x + 1, y + 1, container))) //  Top-right
+            adjacentCoords.add(new Coordinate(x + 1, y + 1, container));
+        if(container.isValidCoordinate(new Coordinate(x + 1, y, container))) //  Middle-right
+            adjacentCoords.add(new Coordinate(x + 1, y, container));
+        if(container.isValidCoordinate(new Coordinate(x, y + 1, container))) //  Top
+            adjacentCoords.add(new Coordinate(x, y + 1, container));
+        if(container.isValidCoordinate(new Coordinate(x, y - 1, container))) //  Bottom
+            adjacentCoords.add(new Coordinate(x, y - 1, container));
+        return adjacentCoords;
     }
     public Boolean equals(Coordinate otherCoord){
         return otherCoord.getX() == this.x && otherCoord.getY() == this.y && otherCoord.getContainer() == this.container;

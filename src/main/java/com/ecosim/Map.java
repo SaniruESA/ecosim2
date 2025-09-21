@@ -1,35 +1,30 @@
 package com.ecosim;
 
-import java.util.ArrayList;
-
 public class Map {
-    ArrayList<Cell> cellHash = new ArrayList<>();
     int rows = 30;
     int cols = 30;
+    Cell[][] grid;
     public Map(int cols, int rows){
         this.cols = cols;
         this.rows = rows;
+        grid = new Cell[rows][cols];
     }
     public void AddCell(Cell c){
-        cellHash.add(c);
+        grid[c.position.getY()][c.position.getX()] = c;
     }
     public String getCellInList(int i, int j){
         String result = "  ";
-        for(Cell target : cellHash){
-            if(target.position.equals(new Coordinate(i, j, this))){
-                result = target.toString();
-                break;
-            } 
+        if(grid[j][i] != null){
+            grid[j][i].Update();
+            result = grid[j][i].toString();
         }
         return result;
     }
+    public boolean isValidCoordinate(Coordinate coord){
+        return coord.getX() >= 0 && coord.getX() < cols && coord.getY() >= 0 && coord.getY() < rows && grid[coord.getY()][coord.getX()] == null;
+    }
     @Override
     public String toString(){
-        // Update using a snapshot so cells added during this tick don't also update immediately
-        java.util.List<Cell> snapshot = new java.util.ArrayList<>(cellHash);
-        for (Cell c : snapshot) {
-            c.Update();
-        }
         String result = "";
         result += "+" + "--".repeat(cols) + "+\n";
         for(int i = 0; i < rows; i++){

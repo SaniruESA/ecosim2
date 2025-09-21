@@ -9,7 +9,7 @@ public class GrassCell extends Cell {
     @Override
     protected void idleBehavior(){
         setGrowthState();
-        growthStage += 3f;
+        growthStage += 1f;
     }
     protected void setGrowthState(){
         switch ((int)growthStage) {
