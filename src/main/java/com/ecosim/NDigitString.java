@@ -7,12 +7,21 @@ public class NDigitString {
         this.length = length;
         this.str = value;
     }
+    /** 
+     * @param length
+     */
     public void setLength(int length) {
         if(length >= 0) {this.length = length; }
     }
+    /** 
+     * @return String
+     */
     private String CropLength(){
         return (str + " ".repeat(length)).substring(0, length);
     }
+    /** 
+     * @return String
+     */
     @Override
     public String toString(){
         return CropLength();

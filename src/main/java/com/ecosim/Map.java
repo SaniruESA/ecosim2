@@ -9,6 +9,13 @@ public class Map {
         this.rows = rows;
         grid = new Cell[rows][cols];
     }
+    /** 
+     * @param xStart
+     * @param yStart
+     * @param xEnd
+     * @param yEnd
+     * @param cellType
+     */
     public void AddCellInRange(int xStart, int yStart, int xEnd, int yEnd,  Class<? extends Cell> cellType){
         for(int i = yStart; i <= yEnd; i++){
             for(int j = xStart; j <= xEnd; j++){
@@ -20,6 +27,9 @@ public class Map {
             }
         }
     }
+    /** 
+     * @param c
+     */
     public void AddCell(Cell c){
         if(isValidCoordinate(c.position) || c instanceof WaterSourceCell){
             grid[c.position.getY()][c.position.getX()] = c;
@@ -27,6 +37,11 @@ public class Map {
             c.position = c.position.getAdjacentCoords().get(0);
         }
     }
+    /** 
+     * @param i
+     * @param j
+     * @return String
+     */
     public String getCellInList(int i, int j){
         String result = "  ";
         if(grid[j][i] != null){
@@ -35,6 +50,10 @@ public class Map {
         }
         return result;
     }
+    /** 
+     * @param coord
+     * @return boolean
+     */
     public boolean isValidCoordinate(Coordinate coord){
         return coord.getX() >= 0 && coord.getX() < cols && coord.getY() >= 0 && coord.getY() < rows && grid[coord.getY()][coord.getX()] == null;
     }
@@ -46,6 +65,9 @@ public class Map {
         if(x < 0 || y < 0 || x >= cols || y >= rows) return null;
         return grid[y][x];
     }
+    /** 
+     * @return String
+     */
     @Override
     public String toString(){
         String result = "";

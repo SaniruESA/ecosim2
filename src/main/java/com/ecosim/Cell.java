@@ -21,6 +21,9 @@ public abstract class Cell {
         this.position = position;
         this.symbol = new NDigitString(symbol,2);
     }
+    /** 
+     * @return String
+     */
     @Override
     public String toString(){
         return symbol.toString();
@@ -45,6 +48,9 @@ public abstract class Cell {
             default -> throw new AssertionError();
         }
     }
+    /** 
+     * @return long
+     */
     public long getHashCode() {
         return hashCode;
     }
@@ -63,6 +69,9 @@ public abstract class Cell {
     protected void deadBehavior(){
         
     }
+    /** 
+     * @return Color
+     */
     public Color getColor(){
         return color;
     }

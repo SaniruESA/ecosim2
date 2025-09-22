@@ -9,6 +9,11 @@ public class Coordinate {
         this.y = y;
         this.container = container;
     }
+    /** 
+     * @param x
+     * @param y
+     * @return Coordinate
+     */
     public Coordinate translate(int x, int y){
         this.x += x;
         this.y += y;
@@ -19,9 +24,15 @@ public class Coordinate {
         return new Coordinate(this.x, this.y, this.container);
     }
 
+    /** 
+     * @return Map
+     */
     public Map getMap(){
         return container;
     }
+    /** 
+     * @return ArrayList<Coordinate>
+     */
     public ArrayList<Coordinate> getAdjacentCoords(){
         ArrayList<Coordinate> adjacentCoords = new ArrayList<>();
         if(container.isValidCoordinate(new Coordinate(x - 1, y - 1, container))) // Bottom-left
@@ -42,15 +53,28 @@ public class Coordinate {
             adjacentCoords.add(new Coordinate(x, y - 1, container));
         return adjacentCoords;
     }
+    /** 
+     * @param otherCoord
+     * @return Boolean
+     */
     public Boolean equals(Coordinate otherCoord){
         return otherCoord.getX() == this.x && otherCoord.getY() == this.y && otherCoord.getContainer() == this.container;
     }
+    /** 
+     * @return int
+     */
     public int getX() {
         return x;
     }
+    /** 
+     * @return int
+     */
     public int getY() {
         return y;
     }
+    /** 
+     * @return Map
+     */
     public Map getContainer() {
         return container;
     }

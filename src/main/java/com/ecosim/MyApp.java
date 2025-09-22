@@ -18,10 +18,12 @@ import javafx.stage.Stage;
 
 public class MyApp extends Application {
     public Map map = new Map(50, 25);
+    /** 
+     * @param stage
+     */
     @Override
     public void start(Stage stage) {
     final int size = 15;
-
     Canvas canvas = new javafx.scene.canvas.Canvas(map.cols * size, map.rows * size);
     GraphicsContext gc = canvas.getGraphicsContext2D();
     gc.setFont(new Font("Monospaced", size));
@@ -36,35 +38,35 @@ public class MyApp extends Application {
     stage.setTitle("hopefully this works");
     stage.setScene(scene);
     stage.show();
-
+    
 
     pauseBtn.setOnAction(e -> map.recalculateWater());
 
-        AnimationTimer timer = new AnimationTimer() {
-            long lastUpdate = 0;
-            // frame counter not used
-            @Override
-            public void handle(long now) {
-                if (now - lastUpdate >= 83_333_333) { 
-                    gc.setFill(Color.BLACK);
-                    gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
-                    for(int y = 0; y < map.rows; y++){
-                        for(int x = 0; x < map.cols; x++){
-                            Cell c = map.getCellAt(x, y);
-                            String text = (c == null) ? "  " : c.toString();
-                            Color color = Color.WHITE;
-                            if(c != null){
-                                c.Update();
-                                color = c.getColor();
-                            }
-                            gc.setFill(color);
-                            gc.fillText(text, x * size, (y + 1) * size - 4);
+    AnimationTimer timer = new AnimationTimer() {
+        long lastUpdate = 0;
+        // frame counter not used
+        @Override
+        public void handle(long now) {
+            if (now - lastUpdate >= 83_333_333) { 
+                gc.setFill(Color.BLACK);
+                gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
+                for(int y = 0; y < map.rows; y++){
+                    for(int x = 0; x < map.cols; x++){
+                        Cell c = map.getCellAt(x, y);
+                        String text = (c == null) ? "  " : c.toString();
+                        Color color = Color.WHITE;
+                        if(c != null){
+                            c.Update();
+                            color = c.getColor();
                         }
+                        gc.setFill(color);
+                        gc.fillText(text, x * size, (y + 1) * size - 4);
                     }
-                    
-                    lastUpdate = now;
                 }
+                
+                lastUpdate = now;
             }
+        }
         };
         timer.start();
         map.AddCellInRange(0, 0, 20, 5, GrassCell.class);
