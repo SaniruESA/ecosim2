@@ -1,9 +1,12 @@
 package com.ecosim;
 
+import javafx.scene.paint.Color;
+
 public abstract class Cell {
     public Coordinate position;
     protected NDigitString symbol;
     protected long hashCode;
+    protected Color color = Color.WHITE;
     protected enum CellState {
         DEAD,
         IDLE,
@@ -12,6 +15,7 @@ public abstract class Cell {
         FLEEING
     }
     protected CellState state = CellState.IDLE;
+    // Note: all cells have to have a one-parameter constructor that takes a coord as an argument
     public Cell(Coordinate position, String symbol){
         hashCode = symbol.charAt(0) * 31 + symbol.charAt(1) + (long)(Math.random() * 10);
         this.position = position;
@@ -58,5 +62,8 @@ public abstract class Cell {
     }
     protected void deadBehavior(){
         
+    }
+    public Color getColor(){
+        return color;
     }
 }

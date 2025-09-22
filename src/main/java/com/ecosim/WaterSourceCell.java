@@ -1,16 +1,21 @@
 package com.ecosim;
 import java.util.ArrayList;
+
+import javafx.scene.paint.Color;
 public class WaterSourceCell extends Cell {
     protected int recursionDepth = 8;
+    protected boolean isAlpha = false;
     protected boolean hasSpread = false;
     protected ArrayList<Coordinate> adjacent = position.getAdjacentCoords();
     int[] randomArr = randomPermutation(adjacent.size());
     protected int nextIndex = 0;
-    public WaterSourceCell(Coordinate position, int recursionDepth) {
+    public WaterSourceCell(Coordinate position, int recursionDepth, boolean isAlpha) {
         super(position, "░░");
+        color = Color.AQUA;
         this.recursionDepth = recursionDepth;
         this.nextIndex = 0;
         state = CellState.IDLE;
+        this.isAlpha = isAlpha;
     }
     protected static int[] randomPermutation(int n){
         int[] arr = new int[n];
@@ -32,7 +37,7 @@ public class WaterSourceCell extends Cell {
 
             if(nextIndex < randomArr.length){
                 Coordinate nextCoord = adjacent.get(randomArr[nextIndex]);
-                position.getMap().AddCell(new WaterSourceCell(nextCoord, recursionDepth - 1));
+                position.getMap().AddCell(new WaterSourceCell(nextCoord, recursionDepth - 1, false));
                 nextIndex++;
             } else {
                 hasSpread = true;
@@ -50,13 +55,34 @@ public class WaterSourceCell extends Cell {
         } 
     }
     protected void setGrowthState(){
-        // symbol = new NDigitString(recursionDepth + "", 2);
+        // DEBUG VIEW 
+        /* if(isAlpha){
+            symbol = new NDigitString("A", 2);
+        } else {
+            symbol = new NDigitString(recursionDepth + "", 2);
+        }*/
+        // VISUALIZATION VIEW 
         switch (recursionDepth) {
-            case 0 -> symbol = new NDigitString("░░", 2);
-            case 1 -> symbol = new NDigitString("▒▒", 2);
-            case 2 -> symbol = new NDigitString("▓▓", 2);
-            case 3 -> symbol = new NDigitString("██", 2);
-            default -> symbol = new NDigitString("██", 2);
+            case 0:
+                symbol = new NDigitString("░░", 2);
+                color = Color.AQUA;
+                break;
+            case 1:
+                symbol = new NDigitString("▒▒", 2);
+                color = Color.DEEPSKYBLUE;
+                break;
+            case 2:
+                symbol = new NDigitString("▓▓", 2);
+                color = Color.DEEPSKYBLUE;
+                break;
+            case 3:
+                symbol = new NDigitString("██", 2);
+                color = Color.DODGERBLUE;
+                break;
+            default:
+                symbol = new NDigitString("██", 2);
+                color = Color.DODGERBLUE;
+                break;
         }
     }
 }
