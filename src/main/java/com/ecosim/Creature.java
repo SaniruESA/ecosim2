@@ -3,7 +3,7 @@ package com.ecosim;
 public class Creature extends Cell {
     public int[] movementVector = {0, 0};
     public Creature(Coordinate position) {
-        super(position, "");
+        super(position, "C1");
         state = CellState.IDLE;
     }
     @Override

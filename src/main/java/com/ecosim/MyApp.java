@@ -78,6 +78,7 @@ public class MyApp extends Application {
                     topGc.fillText(text, c.position.getX() * size, (c.position.getY() + 1) * size - 4);
                 }
                 
+                
                 lastUpdate = now;
             }
         }
