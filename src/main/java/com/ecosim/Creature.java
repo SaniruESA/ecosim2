@@ -11,13 +11,7 @@ public class Creature extends Cell {
     }
     @Override
     protected void idleBehavior(){
-        //Translate randomly every update
-        // (int)(Math.random() * 3) - 1
-        if(Math.random() < 0.25){
-            movementVector[0] = (int)(Math.random() * 3) - 1;
-            movementVector[1] = (int)(Math.random() * 3) - 1;
-        }
-        position.translate(movementVector[0], movementVector[1]);
+        position.translateTo(PathFinderModule.findPath(position, new Coordinate(25, 20, position.getMap()), position.getMap()));
     }
     
 }

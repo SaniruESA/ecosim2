@@ -17,13 +17,8 @@ public abstract class Cell {
     protected CellState state = CellState.IDLE;
     // Note: all cells have to have a one-parameter constructor that takes a coord as an argument
     public Cell(Coordinate position, String symbol){
-    // defensive: ensure symbol has at least 2 chars
-    if (symbol == null) symbol = "  ";
-    if (symbol.length() == 0) symbol = "  ";
-    else if (symbol.length() == 1) symbol = symbol + " ";
-    this.position = position;
-    this.symbol = new NDigitString(symbol,2);
-    hashCode = this.symbol.toString().charAt(0) * 31 + this.symbol.toString().charAt(1) + (long)(Math.random() * 10);
+        this.position = position;
+        this.symbol = new NDigitString(symbol,2);
     }
     /** 
      * @return String

@@ -86,6 +86,6 @@ public class MyApp extends Application {
         timer.start();
         map.AddCellInRange(0, 0, 20, 5, GrassCell.class);
         map.AddCell(new WaterSourceCell(new Coordinate(17, 10, map), 10, true));
-        creatureManager.AddCreature(new Creature(new Coordinate(0, 0, map)));
+        creatureManager.AddCreature(new Creature(new Coordinate(0, 20, map)));
     }
 }

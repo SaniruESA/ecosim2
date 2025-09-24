@@ -78,5 +78,10 @@ public class Coordinate {
     public Map getContainer() {
         return container;
     }
+    public Coordinate translateTo(Coordinate target){
+        this.x = target.getX();
+        this.y = target.getY();
+        return new Coordinate(this.x, this.y, this.container);
+    }
 
 }
