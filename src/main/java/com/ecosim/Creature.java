@@ -5,7 +5,12 @@ public class Creature extends Cell {
     Queue<String> actionQueue;
     public int[] movementVector = {0, 0};
     public Creature(Coordinate position) {
-        super(position, "SK");
+        super(position, ":)");
+        state = CellState.IDLE;
+        actionQueue = new PriorityQueue<>();
+    }
+    public Creature(Coordinate position, String symbol) {
+        super(position, symbol);
         state = CellState.IDLE;
         actionQueue = new PriorityQueue<>();
     }

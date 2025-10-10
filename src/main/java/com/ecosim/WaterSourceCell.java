@@ -22,14 +22,16 @@ public class WaterSourceCell extends Cell {
      * @return int[]
      */
     protected static int[] randomPermutation(int n){
-        int[] arr = new int[n];
-        for(int i = 0; i < n; i++) arr[i] = i;
+        ArrayList<Integer> intPicker = new ArrayList<>();
         java.util.Random rnd = new java.util.Random();
-        for(int i = n - 1; i > 0; i--){
-            int j = rnd.nextInt(i + 1);
-            int tmp = arr[i]; arr[i] = arr[j]; arr[j] = tmp;
+        for(int i = 0; i < n; i++) {
+            int num =  rnd.nextInt(n);
+            while(intPicker.contains(num)) {
+                num = rnd.nextInt(n);
+            }
+            intPicker.add(num);
         }
-        return arr;
+        return intPicker.stream().mapToInt(Integer::intValue).toArray();
     }
     
     @Override

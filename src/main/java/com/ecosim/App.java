@@ -16,7 +16,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-public class MyApp extends Application {
+public class App extends Application {
     public Map map = new Map(50, 50);
     public CreatureManager creatureManager = new CreatureManager(map);
     /** 

@@ -3,6 +3,7 @@ package com.ecosim;
 import java.util.ArrayList;
 
 public class PathFinderModule {
+    // pretty dumb a* esque algorithm thing
     public static Coordinate findPath(Coordinate start, Coordinate end, Map map) {
         int f = 0; // Total cost
         int g = 0; // Cost from start to current node
@@ -18,7 +19,7 @@ public class PathFinderModule {
                 lowestF = f;
                 nextStep = coord;
             }
-            g -= 1; 
+            g -= 1; // Decrements for next iteration
         }
         if(nextStep != null){
             return nextStep;

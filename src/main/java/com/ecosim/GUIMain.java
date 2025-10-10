@@ -5,6 +5,6 @@ public class GUIMain {
      * @param args
      */
     public static void main(String[] args) {
-        Application.launch(MyApp.class, args);
+        Application.launch(App.class, args);
     }
 }
