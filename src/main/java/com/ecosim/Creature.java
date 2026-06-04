@@ -16,7 +16,13 @@ public class Creature extends Cell {
     }
     @Override
     protected void idleBehavior(){
-        position.translateTo(PathFinderModule.findPath(position, new Coordinate(25, 20, position.getMap()), position.getMap()));
+        Coordinate target = new Coordinate(30, 0, position.getMap());
+        Coordinate nextStep = PathFinderModule.findPath(position, target, position.getMap());
+        
+        // Only move if we got a valid next step (not stuck)
+        if (!nextStep.equals(position)) {
+            position.translateTo(nextStep);
+        }
     }
     
 }
