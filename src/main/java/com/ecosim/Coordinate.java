@@ -53,21 +53,10 @@ public class Coordinate {
             adjacentCoords.add(new Coordinate(x, y - 1, container));
         return adjacentCoords;
     }
-    @Override
-    public boolean equals(Object obj) {
-        if (!(obj instanceof Coordinate)) return false;
-        Coordinate otherCoord = (Coordinate) obj;
-        return otherCoord.getX() == this.x && 
-               otherCoord.getY() == this.y && 
-               otherCoord.getContainer() == this.container;
-    }
-
-    @Override
-    public int hashCode() {
-        return java.util.Objects.hash(x, y, container);
-    }
-    
-    // Keep your existing method for backward compatibility if needed
+    /** 
+     * @param otherCoord
+     * @return Boolean
+     */
     public Boolean equals(Coordinate otherCoord){
         return otherCoord.getX() == this.x && otherCoord.getY() == this.y && otherCoord.getContainer() == this.container;
     }
